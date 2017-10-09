@@ -1,25 +1,23 @@
 module JSONAPI
   module RSpec
     module Links
-      if ::RSpec.respond_to?(:configure)
-        ::RSpec::Matchers.define :have_link do |link|
-          match do |actual|
-            actual.key?('links') && actual['links'].key?(link.to_s) &&
-              (!@val_set || actual['links'] == @val)
-          end
-
-          chain :with_value do |val|
-            @val_set = true
-            @val = val
-          end
+      ::RSpec::Matchers.define :have_link do |link|
+        match do |actual|
+          actual.key?('links') && actual['links'].key?(link.to_s) &&
+            (!@val_set || actual['links'] == @val)
         end
 
-        ::RSpec::Matchers.define :have_links do |*links|
-          match do |actual|
-            return false unless actual.key?('links')
+        chain :with_value do |val|
+          @val_set = true
+          @val = val
+        end
+      end
 
-            links.all? { |link| actual['links'].key?(link.to_s) }
-          end
+      ::RSpec::Matchers.define :have_links do |*links|
+        match do |actual|
+          return false unless actual.key?('links')
+
+          links.all? { |link| actual['links'].key?(link.to_s) }
         end
       end
     end

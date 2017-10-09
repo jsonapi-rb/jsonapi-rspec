@@ -8,12 +8,14 @@ require 'jsonapi/rspec/jsonapi_object'
 
 module JSONAPI
   module RSpec
-    include Id
-    include Type
-    include Attributes
-    include Relationships
-    include Links
-    include Meta
-    include JsonapiObject
+    if ::RSpec.respond_to?(:configure)
+      include Id
+      include Type
+      include Attributes
+      include Relationships
+      include Links
+      include Meta
+      include JsonapiObject
+    end
   end
 end
