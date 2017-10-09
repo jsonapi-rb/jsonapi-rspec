@@ -27,7 +27,8 @@ $ bundle
 Add to your `spec/spec_helpers.rb`:
 
 ```ruby
-# spec/spec_helpers.rb
+require 'jsonapi/rspec'
+
 RSpec.configure do |config|
   # ...
   config.include JSONAPI::RSpec
