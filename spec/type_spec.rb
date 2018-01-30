@@ -1,3 +1,4 @@
+require 'spec_helper'
 RSpec.describe JSONAPI::RSpec, '#have_type' do
   it 'succeeds when type matches' do
     expect('type' => 'foo').to have_type('foo')
