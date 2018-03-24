@@ -1,3 +1,4 @@
+require 'rspec/matchers'
 require 'jsonapi/rspec/id'
 require 'jsonapi/rspec/type'
 require 'jsonapi/rspec/attributes'
