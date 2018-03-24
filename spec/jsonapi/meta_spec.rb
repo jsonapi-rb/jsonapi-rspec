@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 RSpec.describe JSONAPI::RSpec, '#have_meta' do
   context 'when providing no value' do
     it 'succeeds when meta is present' do
