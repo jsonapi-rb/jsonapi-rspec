@@ -4,7 +4,7 @@ module JSONAPI
       ::RSpec::Matchers.define :have_link do |link|
         match do |actual|
           actual.key?('links') && actual['links'].key?(link.to_s) &&
-            (!@val_set || actual['links'] == @val)
+            (!@val_set || actual['links'][link.to_s] == @val)
         end
 
         chain :with_value do |val|
