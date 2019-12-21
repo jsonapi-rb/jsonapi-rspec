@@ -20,6 +20,14 @@ module JSONAPI
           attrs.all? { |attr| actual['attributes'].key?(attr.to_s) }
         end
       end
+
+      ::RSpec::Matchers.define :have_all_attributes_in do |*attrs|
+        match do |actual|
+          return true unless actual.key?('attributes')
+
+          (actual['attributes'].keys - attrs.flatten.map(&:to_s)).empty?
+        end
+      end
     end
   end
 end

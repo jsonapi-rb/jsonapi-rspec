@@ -41,6 +41,7 @@ Available matchers:
 * `expect(document['data']).to have_id('12')`
 * `expect(document['data']).to have_type('users')`
 * `expect(document['data']).to have_attributes(:name, :email)`
+* `expect(document['data']).to have_all_attributes_in(:name, :email)`
 * `expect(document['data']).to have_attribute(:name).with_value('Lucas')`
 * `expect(document['data']).to have_relationships(:posts, :comments)`
 * `expect(document['data']).to have_relationship(:posts).with_data([{ 'id' => '1', 'type' => 'posts' }])`
