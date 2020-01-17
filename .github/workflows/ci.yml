@@ -1,0 +1,22 @@
+name: CI
+
+on: [push]
+
+jobs:
+  ruby_rails_test_matrix:
+    runs-on: ubuntu-18.04
+
+    strategy:
+      matrix:
+        ruby: [2.4, 2.6]
+
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Sets up the environment
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+
+    - name: Runs code QA and tests
+      run: gem install bundler && bundle && rake
