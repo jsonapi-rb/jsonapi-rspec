@@ -2,12 +2,6 @@
 
 RSpec matchers for [JSON API](http://jsonapi.org).
 
-## Status
-
-[![Gem Version](https://badge.fury.io/rb/jsonapi-rspec.svg)](https://badge.fury.io/rb/jsonapi-rspec)
-[![Build Status](https://secure.travis-ci.org/jsonapi-rb/jsonapi-rspec.svg?branch=master)](http://travis-ci.org/jsonapi-rb/jsonapi-rspec?branch=master)
-[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/jsonapi-rb/Lobby)
-
 ## Resources
 
 * Chat: [gitter](http://gitter.im/jsonapi-rb)
@@ -61,6 +55,14 @@ Checking for an included resource:
 expect(response_body['included'])
   .to include(have_type('posts').and have_id('1'))
 ```
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at
+https://github.com/jsonapi-rb/jsonapi-rspec
+
+This project is intended to be a safe, welcoming space for collaboration, and
+contributors are expected to adhere to the
+[Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
