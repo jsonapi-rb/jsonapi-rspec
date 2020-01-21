@@ -17,7 +17,8 @@ module JSONAPI
           if !(actual['relationships'] || {}).key?(rel.to_s)
             "expected #{actual} to have relationship #{rel}"
           else
-            "expected #{actual['relationships'][rel.to_s]} to have data #{@data_val}"
+            "expected #{actual['relationships'][rel.to_s]} " \
+              "to have data #{@data_val}"
           end
         end
       end
