@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe JSONAPI::RSpec, '#have_jsonapi_object' do
   context 'when providing no value' do
     it 'succeeds when jsonapi object is present' do
-      expect('jsonapi' => { 'version' => '1.0'}).to have_jsonapi_object
+      expect('jsonapi' => { 'version' => '1.0' }).to have_jsonapi_object
     end
 
     it 'fails when jsonapi object is absent' do

@@ -13,11 +13,18 @@ module JSONAPI
         end
       end
 
-      ::RSpec::Matchers.define :have_attributes do |*attrs|
+      ::RSpec::Matchers.define :have_jsonapi_attributes do |*attrs|
         match do |actual|
           return false unless actual.key?('attributes')
 
-          attrs.all? { |attr| actual['attributes'].key?(attr.to_s) }
+          counted = (attrs.size == actual['attributes'].size) if @exactly
+
+          (attrs.map(&:to_s) - actual['attributes'].keys).empty? &&
+            (counted == @exactly)
+        end
+
+        chain :exactly do
+          @exactly = true
         end
       end
     end
