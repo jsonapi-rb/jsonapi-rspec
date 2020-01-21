@@ -1,4 +1,4 @@
-version = File.read(File.expand_path('../VERSION', __FILE__)).strip
+version = File.read(File.expand_path('VERSION', __dir__)).strip
 
 Gem::Specification.new do |spec|
   spec.name          = 'jsonapi-rspec'
@@ -15,7 +15,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'rspec-expectations'
 
-  spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rake'
+  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'rubocop-performance'
   spec.add_development_dependency 'simplecov'
 end

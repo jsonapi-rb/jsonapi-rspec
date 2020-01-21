@@ -4,6 +4,7 @@ require 'jsonapi/rspec'
 SimpleCov.start do
   add_filter '/spec/'
 end
+SimpleCov.minimum_coverage 90
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
