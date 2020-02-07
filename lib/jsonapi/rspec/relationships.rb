@@ -26,7 +26,7 @@ module JSONAPI
         match do |actual|
           return false unless actual.key?('relationships')
 
-          rels.all? { |rel| actual['relationships'].key?(rel) }
+          rels.all? { |rel| actual['relationships'].key?(rel.to_s) }
         end
       end
     end
