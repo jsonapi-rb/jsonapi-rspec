@@ -5,7 +5,7 @@ module JSONAPI
         match do |actual|
           return false unless (actual['relationships'] || {}).key?(rel.to_s)
 
-          !@data_set || actual['relationships'][rel.to_s]['data'] == @data_val
+          !@data_set || actual['relationships'][rel.to_s]['data'] == JSON.parse(JSON.generate(@data_val))
         end
 
         chain :with_data do |val|
