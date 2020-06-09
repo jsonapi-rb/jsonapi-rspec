@@ -4,7 +4,7 @@ module JSONAPI
       ::RSpec::Matchers.define :have_jsonapi_object do |val|
         match do |actual|
           actual.key?('jsonapi') &&
-            (!val || actual['jsonapi'] == val)
+            (!val || actual['jsonapi'] == JSON.parse(JSON.generate(val)))
         end
       end
     end
