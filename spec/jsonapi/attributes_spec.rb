@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe JSONAPI::RSpec do
   let(:doc) do
     {

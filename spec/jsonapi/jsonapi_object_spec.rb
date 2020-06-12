@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe JSONAPI::RSpec, '#have_jsonapi_object' do
   context 'when providing no value' do
     it 'succeeds when jsonapi object is present' do
