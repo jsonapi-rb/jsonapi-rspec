@@ -11,7 +11,7 @@ module JSONAPI
 
         chain :with_data do |val|
           @data_set = true
-          @data_val = val
+          @data_val = JSONAPI::RSpec.as_indifferent_hash(val)
         end
 
         failure_message do |actual|
@@ -29,7 +29,7 @@ module JSONAPI
           actual = JSONAPI::RSpec.as_indifferent_hash(actual)
           return false unless actual.key?('relationships')
 
-          rels.all? { |rel| actual['relationships'].key?(rel) }
+          rels.map(&:to_s).all? { |rel| actual['relationships'].key?(rel) }
         end
       end
     end

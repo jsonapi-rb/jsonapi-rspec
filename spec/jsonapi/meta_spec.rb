@@ -12,6 +12,15 @@ RSpec.describe JSONAPI::RSpec, '#have_meta' do
   end
 
   context 'when providing a value' do
+    context 'with jsonapi indifferent hash enabled' do
+      before(:all) { ::RSpec.configuration.jsonapi_indifferent_hash = true }
+      after(:all) { ::RSpec.configuration.jsonapi_indifferent_hash = false }
+
+      it do
+        expect('meta' => { 'foo' => 'bar' }).to have_meta(foo: :bar)
+      end
+    end
+
     it 'succeeds when meta matches' do
       expect('meta' => { foo: 'bar' }).to have_meta(foo: 'bar')
     end

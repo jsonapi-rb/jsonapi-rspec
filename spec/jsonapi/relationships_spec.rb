@@ -1,50 +1,60 @@
-RSpec.describe JSONAPI::RSpec do
-  json_doc =
+require 'spec_helper'
+
+RSpec.describe JSONAPI::RSpec, '#have_relationship(s)' do
+  let(:doc) do
     {
       'relationships' => {
-        'posts' => {
-          'data' => {
-            'id' => '1',
-            'type' => 'posts'
-          }
+        'user' => {
+          'data' => { 'id' => '1', 'type' => 'user' }
         },
         'comments' => {
-          'data' => [{
-            'id' => '1',
-            'type' => 'posts'
-          }, {
-            'id' => '2',
-            'type' => 'hides'
-          }]
+          'data' => [
+            { 'id' => '1', 'type' => 'comment' },
+            { 'id' => '2', 'type' => 'comment' }
+          ]
         }
       }
     }
-
-  describe '#have_relationship' do
-    context 'when relationships is present' do
-      it { expect(json_doc).to have_relationship('posts') }
-      it { expect(json_doc).not_to have_relationship('mails') }
-      it { expect(json_doc).to have_relationship('posts').with_data({ 'id' => '1', 'type' => 'posts' }) }
-      it do
-        expect(json_doc).to have_relationship('comments').with_data(
-          [{ 'id' => '1', 'type' => 'posts' }, { 'id' => '2', 'type' => 'hides' }]
-        )
-      end
-    end
-
-    context 'when relationships is not present' do
-      it { expect({}).not_to have_relationship('posts') }
-    end
   end
 
-  describe '#have_relationships' do
-    context 'when relationships is present' do
-      it { expect(json_doc).to have_relationships('posts', 'comments') }
-      it { expect(json_doc).not_to have_relationships('posts', 'comments', 'mails') }
+  it { expect(doc).not_to have_relationships('user', 'comments', 'authors') }
+  it { expect(doc).to have_relationships('user', 'comments') }
+
+  it { expect(doc).not_to have_relationship('authors') }
+  it { expect(doc).to have_relationship('user') }
+
+  it do
+    expect(doc).to have_relationship('user').with_data(
+      { 'id' => '1', 'type' => 'user' }
+    )
+  end
+
+  it do
+    expect(doc).to have_relationship('comments').with_data(
+      [
+        { 'id' => '1', 'type' => 'comment' },
+        { 'id' => '2', 'type' => 'comment' }
+      ]
+    )
+  end
+
+  context 'with jsonapi indifferent hash enabled' do
+    before(:all) { ::RSpec.configuration.jsonapi_indifferent_hash = true }
+    after(:all) { ::RSpec.configuration.jsonapi_indifferent_hash = false }
+
+    it { expect(doc).to have_relationships(:user, :comments) }
+
+    it do
+      expect(doc).to have_relationship('user').with_data(id: '1', type: :user)
     end
 
-    context 'when relationships is not present' do
-      it { expect({}).not_to have_relationships('posts', 'comments') }
+    it do
+      expect(doc).to have_relationship('comments').with_data(
+        [
+          { id: '1', type: 'comment' },
+          { id: '2', type: 'comment' }
+        ]
+      )
     end
   end
 end
