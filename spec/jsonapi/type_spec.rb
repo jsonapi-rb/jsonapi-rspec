@@ -1,13 +1,17 @@
 RSpec.describe JSONAPI::RSpec, '#have_type' do
-  it 'succeeds when type matches' do
-    expect('type' => 'foo').to have_type('foo')
-  end
+  json_doc =
+    {
+      'type' => 'foo'
+    }
 
-  it 'fails when type mismatches' do
-    expect('type' => 'foo').not_to have_type('bar')
-  end
+  describe '#have_tyoe' do
+    context 'when type is present' do
+      it { expect(json_doc).to have_type('foo') }
+      it { expect(json_doc).not_to have_type('bar') }
+    end
 
-  it 'fails when type is absent' do
-    expect({}).not_to have_type('foo')
+    context 'when type is not present' do
+      it { expect({}).not_to have_type('foo') }
+    end
   end
 end
