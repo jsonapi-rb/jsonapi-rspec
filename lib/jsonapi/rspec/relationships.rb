@@ -3,6 +3,7 @@ module JSONAPI
     module Relationships
       ::RSpec::Matchers.define :have_relationship do |rel|
         match do |actual|
+          actual = JSONAPI::RSpec.as_indifferent_hash(actual)
           return false unless (actual['relationships'] || {}).key?(rel.to_s)
 
           !@data_set || actual['relationships'][rel.to_s]['data'] == @data_val
@@ -25,6 +26,7 @@ module JSONAPI
 
       ::RSpec::Matchers.define :have_relationships do |*rels|
         match do |actual|
+          actual = JSONAPI::RSpec.as_indifferent_hash(actual)
           return false unless actual.key?('relationships')
 
           rels.all? { |rel| actual['relationships'].key?(rel) }
