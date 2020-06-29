@@ -1,3 +1,4 @@
+require 'json'
 require 'rspec/matchers'
 require 'jsonapi/rspec/id'
 require 'jsonapi/rspec/type'
@@ -8,7 +9,7 @@ require 'jsonapi/rspec/meta'
 require 'jsonapi/rspec/jsonapi_object'
 
 RSpec.configure do |c|
-  c.add_setting :allow_symbolized_jsonapi, default: false
+  c.add_setting :jsonapi_indifferent_hash, default: false
 end
 
 module JSONAPI
@@ -22,8 +23,11 @@ module JSONAPI
     include JsonapiObject
 
     def self.as_indifferent_hash(doc)
-      return doc unless ::RSpec.configuration.allow_symbolized_jsonapi
-      return doc.with_indifferent_access if doc.respond_to?(:with_indifferent_access)
+      return doc unless ::RSpec.configuration.jsonapi_indifferent_hash
+
+      if doc.respond_to?(:with_indifferent_access)
+        return doc.with_indifferent_access
+      end
 
       JSON.parse(JSON.generate(doc))
     end

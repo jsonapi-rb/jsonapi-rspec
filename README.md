@@ -25,10 +25,11 @@ Add to your `spec/spec_helpers.rb`:
 require 'jsonapi/rspec'
 
 RSpec.configure do |config|
-  # ...
   config.include JSONAPI::RSpec
+
+  # Support for documents with mixed string/symbol keys. Disabled by default.
+  config.jsonapi_indifferent_hash = true
 end
-```
 
 ## Usage and documentation
 
@@ -47,17 +48,6 @@ Available matchers:
 * `expect(document).to have_meta('foo' => 'bar')`
 * `expect(document).to have_jsonapi_object`
 * `expect(document).to have_jsonapi_object('version' => '1.0')`
-
-### Indifferent Matching
-```ruby
-# spec/spec_helpers.rb
-
-RSpec.configure do |config|
-  # ...
-  config.allow_symbolized_jsonapi = true
-end
-```
-The configuration above allows the RSpec matchers to work with a symbolized jsonapi source document.
 
 ## Advanced examples
 
