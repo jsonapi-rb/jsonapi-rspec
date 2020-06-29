@@ -2,11 +2,6 @@
 
 RSpec matchers for [JSON API](http://jsonapi.org).
 
-## Resources
-
-* Chat: [gitter](http://gitter.im/jsonapi-rb)
-* Twitter: [@jsonapirb](http://twitter.com/jsonapirb)
-
 ## Installation
 
 Add the following to your application's Gemfile:
@@ -30,6 +25,7 @@ RSpec.configure do |config|
   # Support for documents with mixed string/symbol keys. Disabled by default.
   config.jsonapi_indifferent_hash = true
 end
+```
 
 ## Usage and documentation
 
