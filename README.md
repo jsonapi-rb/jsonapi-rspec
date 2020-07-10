@@ -42,6 +42,7 @@ Available matchers:
 * `expect(document['data']).to have_link(:self).with_value('http://api.example.com/users/12')`
 * `expect(document).to have_meta`
 * `expect(document).to have_meta('foo' => 'bar')`
+* `expect(document).to have_meta('foo' => 'bar', 'fum' => 'baz').exactly`
 * `expect(document).to have_jsonapi_object`
 * `expect(document).to have_jsonapi_object('version' => '1.0')`
 
