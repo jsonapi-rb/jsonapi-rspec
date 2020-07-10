@@ -13,6 +13,7 @@ Gem::Specification.new do |spec|
   spec.files         = Dir['README.md', 'lib/**/*']
   spec.require_path  = 'lib'
 
+  spec.add_dependency 'rspec-core'
   spec.add_dependency 'rspec-expectations'
 
   spec.add_development_dependency 'rake'
