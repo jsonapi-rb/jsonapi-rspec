@@ -29,7 +29,14 @@ module JSONAPI
           actual = JSONAPI::RSpec.as_indifferent_hash(actual)
           return false unless actual.key?('relationships')
 
-          rels.map(&:to_s).all? { |rel| actual['relationships'].key?(rel) }
+          counted = (rels.size == actual['relationships'].keys.size) if @exactly
+
+          rels.map(&:to_s).all? { |rel| actual['relationships'].key?(rel) } \
+            && (counted == @exactly)
+        end
+
+        chain :exactly do
+          @exactly = true
         end
       end
     end

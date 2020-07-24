@@ -23,6 +23,9 @@ RSpec.describe JSONAPI::RSpec, '#have_relationship(s)' do
   it { expect(doc).not_to have_relationship('authors') }
   it { expect(doc).to have_relationship('user') }
 
+  it { expect(doc).to have_relationships('user', 'comments').exactly }
+  it { expect(doc).not_to have_relationships('comments').exactly }
+
   it do
     expect(doc).to have_relationship('user').with_data(
       { 'id' => '1', 'type' => 'user' }

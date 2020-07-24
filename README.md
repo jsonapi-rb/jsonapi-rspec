@@ -37,6 +37,7 @@ Available matchers:
 * `expect(document['data']).to have_jsonapi_attributes(:name, :email, :country).exactly`
 * `expect(document['data']).to have_attribute(:name).with_value('Lucas')`
 * `expect(document['data']).to have_relationships(:posts, :comments)`
+* `expect(document['data']).to have_relationships(:posts, :comments, :likes).exactly`
 * `expect(document['data']).to have_relationship(:posts).with_data([{ 'id' => '1', 'type' => 'posts' }])`
 * `expect(document['data']['relationships']['posts']).to have_links(:self, :related)`
 * `expect(document['data']).to have_link(:self).with_value('http://api.example.com/users/12')`
