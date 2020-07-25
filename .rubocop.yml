@@ -13,3 +13,8 @@ Metrics/BlockLength:
 
 Style/IfUnlessModifier:
   Enabled: false
+
+Metrics/BlockLength:
+  Max: 35
+  Exclude:
+    - 'spec/*/*_spec.rb'

@@ -20,21 +20,28 @@ RSpec.describe JSONAPI::RSpec do
     it { expect(doc).to have_attribute(:six).with_value(foo: 'bar') }
 
     it 'rejects with an appropriate failure message' do
-      expect {
-        expect(doc).to have_attribute(:three)
-      }.to fail_with('expected attributes to include `three`. Actual attributes were ["one", "two", "four", "six"]')
+      expect { expect(doc).to have_attribute(:three) }
+        .to raise_error(
+          RSpec::Expectations::ExpectationNotMetError,
+          'expected attributes to include `three`. ' \
+          'Actual attributes were ["one", "two", "four", "six"]'
+        )
     end
 
-    it 'rejects with an appropriate failure message for chained with_value, simple values' do
-      expect {
-        expect(doc).to have_attribute(:one).with_value(2)
-      }.to fail_with('expected `one` attribute to have value `2` but was `1`')
+    it 'fails with a failure message for chained with_value' do
+      expect { expect(doc).to have_attribute(:one).with_value(2) }
+        .to raise_error(
+          RSpec::Expectations::ExpectationNotMetError,
+          /expected `one` attribute to have value `2` but was `1`/m
+        )
     end
 
-    it 'rejects with an appropriate failure message for chained with_value, complex values show diff' do
-      expect {
-        expect(doc).to have_attribute(:six).with_value(bar: 'baz')
-      }.to fail_with(/expected `six` attribute to have value `{:bar=>"baz"}` but was `{:foo=>"bar"}`.*Diff:/m)
+    it 'fails with a failure message and diff for chained with_value' do
+      expect { expect(doc).to have_attribute(:six).with_value(bar: 'baz') }
+        .to raise_error(
+          RSpec::Expectations::ExpectationNotMetError,
+          /expected `six` .* `{:bar=>"baz"}` but was `{:foo=>"bar"}`.*Diff:/m
+        )
     end
   end
 

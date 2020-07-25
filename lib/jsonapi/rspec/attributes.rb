@@ -5,7 +5,7 @@ module JSONAPI
         match do |actual|
           actual = JSONAPI::RSpec.as_indifferent_hash(actual)
           @attributes_node = actual['attributes']
-          
+
           return false unless @attributes_node
 
           @has_attribute = @attributes_node.key?(attr.to_s)
@@ -34,11 +34,13 @@ module JSONAPI
           result
         end
 
-        failure_message do |actual|
+        failure_message do |_actual|
           if @has_attribute
-            "expected `#{attr}` attribute to have value `#{@expected}` but was `#{@actual}`"
+            "expected `#{attr}` attribute " \
+              "to have value `#{@expected}` but was `#{@actual}`"
           else
-            "expected attributes to include `#{attr}`. Actual attributes were #{@attributes_node.keys}"
+            "expected attributes to include `#{attr}`. " \
+              "Actual attributes were #{@attributes_node.keys}"
           end
         end
 

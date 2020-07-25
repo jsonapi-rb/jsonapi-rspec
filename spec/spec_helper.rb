@@ -6,27 +6,8 @@ SimpleCov.start do
 end
 SimpleCov.minimum_coverage 90
 
-module FailMatchers
-  def fail
-    raise_error(RSpec::Expectations::ExpectationNotMetError)
-  end
-
-  def fail_with(message)
-    raise_error(RSpec::Expectations::ExpectationNotMetError, message)
-  end
-
-  def fail_including(snippet)
-    raise_error(
-      RSpec::Expectations::ExpectationNotMetError,
-      a_string_including(snippet)
-    )
-  end
-end
-
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
-  config.include FailMatchers
-
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
