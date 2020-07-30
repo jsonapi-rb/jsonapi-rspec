@@ -47,6 +47,32 @@ Available matchers:
 * `expect(document).to have_jsonapi_object`
 * `expect(document).to have_jsonapi_object('version' => '1.0')`
 
+### On matcher arguments...
+
+**Note**: JSON:API spec requires JSON documents, thus attribute, relationship
+and link matcher arguments will always be converted into strings for
+consistency!!!
+
+Basically, the tests bellow are absolutely equal:
+
+```ruby
+expect(document['data']).to have_id(12)
+expect(document['data']).to have_id('12')
+
+expect(document['data']).to have_type(:users)
+expect(document['data']).to have_type('users')
+
+expect(document['data']).to have_jsonapi_attributes(:name, :email)
+expect(document['data']).to have_jsonapi_attributes('name', 'email')
+```
+
+The JSON:API spec also requires the `id` and `type` to be strings, so any other
+argument passed will also be converted into a string.
+
+If the document you are trying to test has mixed string/symbol keys, just
+configure matchers to be indifferent in that regard, using the
+`jsonapi_indifferent_hash = true` configuration option.
+
 ## Advanced examples
 
 Checking for an included resource:
