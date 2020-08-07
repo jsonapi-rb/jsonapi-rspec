@@ -18,3 +18,6 @@ Metrics/BlockLength:
   Max: 30
   Exclude:
     - 'spec/*/*_spec.rb'
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
