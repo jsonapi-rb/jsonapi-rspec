@@ -12,4 +12,8 @@ RSpec.describe JSONAPI::RSpec, '#have_type' do
   it 'fails when type is absent' do
     expect({}).not_to have_type('foo')
   end
+
+  it 'succeeds when expected type is a symbol' do
+    expect('type' => :foo).to have_type(:foo)
+  end
 end
