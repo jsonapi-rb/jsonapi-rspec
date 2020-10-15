@@ -46,6 +46,7 @@ Available matchers:
 * `expect(document).to have_meta('foo' => 'bar', 'fum' => 'baz').exactly`
 * `expect(document).to have_jsonapi_object`
 * `expect(document).to have_jsonapi_object('version' => '1.0')`
+* `expect(document).to have_error('status' => '422')`
 
 ### On matcher arguments...
 

@@ -8,6 +8,7 @@ require 'jsonapi/rspec/relationships'
 require 'jsonapi/rspec/links'
 require 'jsonapi/rspec/meta'
 require 'jsonapi/rspec/jsonapi_object'
+require 'jsonapi/rspec/errors'
 
 RSpec.configure do |c|
   c.add_setting :jsonapi_indifferent_hash, default: false
