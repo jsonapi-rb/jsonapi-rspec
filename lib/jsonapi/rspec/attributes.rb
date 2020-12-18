@@ -29,7 +29,7 @@ module JSONAPI
         end
 
         failure_message do |_doc|
-          if @actual
+          if @has_attribute
             "expected `#{attr_name}` attribute " \
               "to have value `#{@expected}` but was `#{@actual}`"
           else
