@@ -15,11 +15,11 @@ module JSONAPI
         end
 
         failure_message do |actual|
-          if !(actual['relationships'] || {}).key?(rel.to_s)
-            "expected #{actual} to have relationship #{rel}"
-          else
+          if (actual['relationships'] || {}).key?(rel.to_s)
             "expected #{actual['relationships'][rel.to_s]} " \
               "to have data #{@data_val}"
+          else
+            "expected #{actual} to have relationship #{rel}"
           end
         end
       end

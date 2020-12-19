@@ -10,10 +10,6 @@ Style/FrozenStringLiteralComment:
 Style/Documentation:
   Enabled: false
 
-Metrics/BlockLength:
-  Exclude:
-    - 'spec/*/*_spec.rb'
-
 Style/IfUnlessModifier:
   Enabled: false
 
