@@ -5,6 +5,14 @@ RSpec.describe JSONAPI::RSpec, '#have_type' do
     expect('type' => 'foo').to have_type('foo')
   end
 
+  it 'succeeds when expectation is symbol' do
+    expect('type' => 'foo').to have_type(:foo)
+  end
+
+  it 'succeeds when type is a symbol' do
+    expect('type' => :foo).to have_type('foo')
+  end
+
   it 'fails when type mismatches' do
     expect('type' => 'foo').not_to have_type('bar')
   end
