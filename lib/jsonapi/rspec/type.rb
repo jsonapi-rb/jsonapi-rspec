@@ -3,7 +3,7 @@ module JSONAPI
     module Type
       ::RSpec::Matchers.define :have_type do |expected|
         match do |actual|
-          JSONAPI::RSpec.as_indifferent_hash(actual)['type'] == expected.to_s
+          JSONAPI::RSpec.as_indifferent_hash(actual)['type'].to_s == expected.to_s
         end
       end
     end
