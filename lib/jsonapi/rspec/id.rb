@@ -3,7 +3,7 @@ module JSONAPI
     module Id
       ::RSpec::Matchers.define :have_id do |expected|
         match do |actual|
-          JSONAPI::RSpec.as_indifferent_hash(actual)['id'] == expected
+          JSONAPI::RSpec.as_indifferent_hash(actual)['id'].to_s == expected.to_s
         end
       end
     end
