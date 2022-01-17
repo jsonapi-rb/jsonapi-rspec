@@ -41,6 +41,12 @@ RSpec.describe JSONAPI::RSpec, '#have_relationship(s)' do
     )
   end
 
+  it do
+    expect(doc).to have_relationship('comments').with_data(
+      include(have_id('1').and(have_type('comment')))
+    )
+  end
+
   context 'with jsonapi indifferent hash enabled' do
     before(:all) { ::RSpec.configuration.jsonapi_indifferent_hash = true }
     after(:all) { ::RSpec.configuration.jsonapi_indifferent_hash = false }
