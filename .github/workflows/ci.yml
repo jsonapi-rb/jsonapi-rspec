@@ -4,11 +4,11 @@ on: [push, pull_request]
 
 jobs:
   ruby_rails_test_matrix:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        ruby: [2.4, 2.7]
+        ruby: [2.4, 2.7, '3.0', 3.1, ruby-head]
 
     steps:
     - uses: actions/checkout@master
@@ -16,6 +16,6 @@ jobs:
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
-
+        bundler-cache: true # 'bundle install' and cache
     - name: Runs code QA and tests
-      run: bundle && rake
+      run: bundle exec rake
