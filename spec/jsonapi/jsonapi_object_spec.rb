@@ -13,8 +13,8 @@ RSpec.describe JSONAPI::RSpec, '#have_jsonapi_object' do
 
   context 'when providing a value' do
     context 'with jsonapi indifferent hash enabled' do
-      before(:all) { ::RSpec.configuration.jsonapi_indifferent_hash = true }
-      after(:all) { ::RSpec.configuration.jsonapi_indifferent_hash = false }
+      before(:all) { RSpec.configuration.jsonapi_indifferent_hash = true }
+      after(:all) { RSpec.configuration.jsonapi_indifferent_hash = false }
 
       it do
         expect('jsonapi' => { 'version' => '1.0' })

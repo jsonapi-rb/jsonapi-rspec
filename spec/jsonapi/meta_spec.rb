@@ -22,8 +22,8 @@ RSpec.describe JSONAPI::RSpec, '#have_meta' do
 
   context 'when providing a value' do
     context 'with jsonapi indifferent hash enabled' do
-      before(:all) { ::RSpec.configuration.jsonapi_indifferent_hash = true }
-      after(:all) { ::RSpec.configuration.jsonapi_indifferent_hash = false }
+      before(:all) { RSpec.configuration.jsonapi_indifferent_hash = true }
+      after(:all) { RSpec.configuration.jsonapi_indifferent_hash = false }
 
       it do
         expect(doc).to have_meta(one: 'I')
