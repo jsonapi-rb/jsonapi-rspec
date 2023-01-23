@@ -20,4 +20,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec'
   spec.add_development_dependency 'rubocop-performance'
   spec.add_development_dependency 'simplecov'
+
+  spec.metadata = {
+    'rubygems_mfa_required' => 'true'
+  }
 end

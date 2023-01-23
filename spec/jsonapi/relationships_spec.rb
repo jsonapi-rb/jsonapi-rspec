@@ -42,8 +42,8 @@ RSpec.describe JSONAPI::RSpec, '#have_relationship(s)' do
   end
 
   context 'with jsonapi indifferent hash enabled' do
-    before(:all) { ::RSpec.configuration.jsonapi_indifferent_hash = true }
-    after(:all) { ::RSpec.configuration.jsonapi_indifferent_hash = false }
+    before(:all) { RSpec.configuration.jsonapi_indifferent_hash = true }
+    after(:all) { RSpec.configuration.jsonapi_indifferent_hash = false }
 
     it { expect(doc).to have_relationships(:user, :comments) }
 
