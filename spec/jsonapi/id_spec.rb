@@ -5,6 +5,10 @@ RSpec.describe JSONAPI::RSpec, '#have_id' do
     expect('id' => 'foo').to have_id('foo')
   end
 
+  it 'succeeds when expectation is integer' do
+    expect('id' => '123').to have_id(123)
+  end
+
   it 'fails when id mismatches' do
     expect('id' => 'foo').not_to have_id('bar')
   end
