@@ -82,6 +82,17 @@ Checking for an included resource:
 expect(response_body['included'])
   .to include(have_type('posts').and have_id('1'))
 ```
+
+Combining `have_relationship.with_data` matcher with other matchers:
+
+```ruby
+expect(response_body)
+  .to have_relationship(:posts).with_data(include(have_id('1')))
+
+expect(response_body)
+  .to have_relationship(:posts).with_data(all(have_type('post')))
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at

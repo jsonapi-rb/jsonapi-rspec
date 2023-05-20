@@ -6,18 +6,18 @@ module JSONAPI
           actual = JSONAPI::RSpec.as_indifferent_hash(actual)
           return false unless (actual['relationships'] || {}).key?(rel.to_s)
 
-          !@data_set || actual['relationships'][rel.to_s]['data'] == @data_val
+          !@data_set || values_match?(@data_val, actual['relationships'][rel.to_s]['data'])
         end
 
         chain :with_data do |val|
           @data_set = true
-          @data_val = JSONAPI::RSpec.as_indifferent_hash(val)
+          @data_val = ::RSpec::Matchers.is_a_matcher?(val) ? val : JSONAPI::RSpec.as_indifferent_hash(val)
         end
 
         failure_message do |actual|
           if (actual['relationships'] || {}).key?(rel.to_s)
             "expected #{actual['relationships'][rel.to_s]} " \
-              "to have data #{@data_val}"
+              "to have data #{description_of(@data_val)}"
           else
             "expected #{actual} to have relationship #{rel}"
           end
